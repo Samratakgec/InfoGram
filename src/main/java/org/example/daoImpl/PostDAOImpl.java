@@ -20,7 +20,7 @@ public class PostDAOImpl implements PostDAO {
     }
     @Override
     public void createPost(String user_id, String PostTitle, String PostBody) throws SQLException {
-        String query = "INSERT INTO Post (CreatedByUser_ID, PostTitle, PostBody) VALUES (?, ?, ?)" ;
+        String query = "INSERT INTO Post (CreatedByUser_ID, PostTitle, PostContent) VALUES (?, ?, ?)" ;
         PreparedStatement pstmt = con.prepareStatement(query);
         pstmt.setString(1,user_id);
         pstmt.setString(2,PostTitle);
@@ -41,9 +41,11 @@ public class PostDAOImpl implements PostDAO {
         System.out.println("PostID\tPostTitle\tPostContent");
         while (rs.next())
         {
-            rs.getString(0) ;
-            rs.getString(1) ;
-            rs.getString(2) ;
+            int postId = rs.getInt(1);       // Column 1: PostID
+            String postTitle = rs.getString(2);  // Column 2: PostTitle
+            String postContent = rs.getString(3); // Column 3: PostContent
+
+            System.out.println(postId + "\t" + postTitle + "\t" + postContent);
         }
     }
 
@@ -54,8 +56,10 @@ public class PostDAOImpl implements PostDAO {
         pstmt.setString(1,user_id);
         pstmt.setString(2, String.valueOf(post_id));
 
-        ResultSet rs = pstmt.executeQuery();
+        int rs = pstmt.executeUpdate();
+        if(rs>0)
         System.out.println("Post deleted successfully");
+        else System.out.println("Action not allowed");
 
     }
 
@@ -69,9 +73,12 @@ public class PostDAOImpl implements PostDAO {
         System.out.println("PostTitle\tPostContent\tCreatedByUser");
         while (rs.next())
         {
-            rs.getString(1);
-            rs.getString(2) ;
-            rs.getString(3) ;
+            String postTitle =  rs.getString(2);
+            String postContent= rs.getString(3) ;
+            String createdByUser =  rs.getString(4) ;
+
+            System.out.println(postTitle+"\t"+postContent+"\t"+createdByUser);
+
         }
     }
 }

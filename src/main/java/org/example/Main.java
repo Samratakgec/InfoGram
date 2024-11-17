@@ -55,6 +55,7 @@ public class Main {
                         User newUser = new User(userId, firstName, lastName, password);
                         userdaoimpl.signUp(newUser);
                         loggedInUserId = userId;
+                        hasLoggedIn = true ;
                         break;
 
                     case 2: // Login

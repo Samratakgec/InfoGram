@@ -52,7 +52,7 @@ public class RatingDAOImpl implements RatingDAO {
 
     @Override
     public void updateRating(String user_id, int post_id, int rating) {
-        String query = "UPDATE Rating SET RatingScore = ? WHERE User_ID = ? AND Post_ID = ?";
+        String query = "UPDATE Rating SET RatingScore = ? WHERE RatedByUser_ID = ? AND Post_ID = ?";
         try (PreparedStatement pstmt = con.prepareStatement(query)) {
             pstmt.setInt(1, rating);
             pstmt.setString(2, user_id);
@@ -71,7 +71,7 @@ public class RatingDAOImpl implements RatingDAO {
 
     @Override
     public void removeRating(String user_id, int post_id) {
-        String query = "DELETE FROM Rating WHERE User_ID = ? AND Post_ID = ?";
+        String query = "DELETE FROM Rating WHERE RatedByUser_ID = ? AND Post_ID = ?";
         try (PreparedStatement pstmt = con.prepareStatement(query)) {
             pstmt.setString(1, user_id);
             pstmt.setInt(2, post_id);

@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f142eef-a940-4dc3-9540-908c1fb20369" name="Changes" comment="InfoGram version 1 made using JDBC">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/daoImpl/PostDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/daoImpl/PostDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/daoImpl/RatingDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/daoImpl/RatingDAOImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="4f142eef-a940-4dc3-9540-908c1fb20369" name="Changes" comment="InfoGram version 1 made using JDBC" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -1,5 +1,9 @@
 package org.example.entity;
 
+<<<<<<< HEAD
+public class Rating {
+
+=======
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,4 +27,5 @@ public class Rating {
         this.userId = userId ;
         this.ratingScore = ratingScore ;
     }
+>>>>>>> master
 }

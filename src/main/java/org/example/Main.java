@@ -42,7 +42,7 @@ public class Main {
                 System.out.println("Thank you for using InfoGram. Goodbye!");
                 break;
             }
-
+ 
             switch (choice)
             {
                 case 1: // Sign Up

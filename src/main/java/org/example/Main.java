@@ -21,7 +21,7 @@ public class Main {
         boolean hasLoggedIn = false;
         String loggedInUserId = null;
         int choice =0 ;
-
+        Long postid ;
         PostDAOImpl postDAOimpl = new PostDAOImpl() ;
         RatingDAOImpl ratingDAOimpl = new RatingDAOImpl();
         while (true)
@@ -32,6 +32,7 @@ public class Main {
             System.out.println("6. Delete Post\n7. Rate a Post");
             System.out.println("8. Display Average Rating of a Post");
             System.out.println("9. Delete Post Rating");
+            System.out.println("10. Display all posts");
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
@@ -42,7 +43,7 @@ public class Main {
                 System.out.println("Thank you for using InfoGram. Goodbye!");
                 break;
             }
- 
+
             switch (choice)
             {
                 case 1: // Sign Up
@@ -88,7 +89,6 @@ public class Main {
                 case 3 :
                     if (hasLoggedIn)
                     {
-
                         String  postTitle,postContent ;
                         System.out.println("Enter title of post");
                         postTitle = sc.nextLine() ;
@@ -118,17 +118,17 @@ public class Main {
                 case 6:
                     if (hasLoggedIn)
                     {
-                        Long postid ;
+
                         System.out.println("Enter the post-id ");
                         postid = sc.nextLong() ;
-                        postDAOimpl.deletePost(postid);
+                        postDAOimpl.deletePost(postid, loggedInUserId);
                     }
                     else System.out.println("Please login or signup");
                     break;
                 case 7:
                     if (hasLoggedIn)
                     {
-                        Long postid ; int score ;
+                        int score ;
                         System.out.println("Enter post id");
                         postid = sc.nextLong() ;
                         System.out.println("Enter rating score");
@@ -139,7 +139,7 @@ public class Main {
                     else System.out.println("Please login or signup");
                     break;
                 case 8:
-                    Long postid ;
+
                     System.out.println("Enter post id");
                     postid = sc.nextLong() ;
                     ratingDAOimpl.showAvgRating(postid);
@@ -147,13 +147,14 @@ public class Main {
                 case 9:
                     if (hasLoggedIn)
                     {
-//                        Long postid ;
                         System.out.println("Enter post id");
                         postid = sc.nextLong() ;
                         ratingDAOimpl.removeRating(loggedInUserId,postid);
                     }
                     else System.out.println("Please login or signup");
                     break;
+                case 10 :
+                    postDAOimpl.readAllPosts();
             }
         }
     }

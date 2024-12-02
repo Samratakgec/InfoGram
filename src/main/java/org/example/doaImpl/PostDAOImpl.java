@@ -30,19 +30,28 @@ public class PostDAOImpl implements PostDAO {
     }
 
     @Override
-    public void deletePost(Long postId) {
+    public void deletePost(Long postId,String loggedInUserId) {
         Transaction tx = session.beginTransaction() ;
+        boolean flag = false ;
         try {
             Post post = session.get(Post.class, postId);
-            session.remove(post);
-            tx.commit();
-            System.out.println("Post Deleted successfully");
+            if (Objects.equals(post.getCreatedByUser(), loggedInUserId)) {
+                session.remove(post);
+                tx.commit();
+                System.out.println("Post Deleted successfully");
+            }
+            else {
+                flag = true ;
+                throw new RuntimeException();
+            }
         }
         catch (Exception e)
         {
-            System.out.println("Error in deleting post! Please try again later");
+            if (flag) System.out.println("Action Not Allowed!! You can't delete other than your post");
+            else System.out.println("Error in deleting post! Please try again later");
             tx.rollback();
         }
+
     }
 
     @Override
@@ -64,6 +73,25 @@ public class PostDAOImpl implements PostDAO {
             if (tx != null) {
                 tx.rollback();
             }
+        }
+    }
+
+    @Override
+    public void readAllPosts() {
+
+        try {
+            String hql = "FROM Post" ;
+            Query<Post> query = session.createQuery(hql, Post.class);
+            // Execute the query and retrieve the post
+            List<Post> posts = query.getResultList();
+            for (Post post : posts) {
+                System.out.println(post);
+            }
+
+        }
+        catch (Exception e)
+        {
+            System.out.println("Unable to fetch data right now");
         }
     }
 
